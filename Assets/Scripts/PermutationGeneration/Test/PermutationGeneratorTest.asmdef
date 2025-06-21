@@ -1,0 +1,16 @@
+{
+    "name": "PermutationGeneratorTest",
+    "rootNamespace": "",
+    "references": [
+        "GUID:55087294a22a8cd48b035af740342f57"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
