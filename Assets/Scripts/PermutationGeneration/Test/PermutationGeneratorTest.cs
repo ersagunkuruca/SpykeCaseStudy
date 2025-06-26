@@ -9,7 +9,7 @@ public class PermutationGeneratorTest : MonoBehaviour
     void Start()
     {
         var frequencies = new int[] { 13, 13, 13, 13, 13, 9, 8, 7, 6, 5 };
-        var results = PermutationGenerator.GeneratePermutations(frequencies);
+        var results = PermutationGenerator.GeneratePermutationsNew(frequencies);
         for (int i = 0; i < results.Length; i++)
         {
             Debug.Log(string.Join(",", results[i].Select(x=>x.ToString())));
