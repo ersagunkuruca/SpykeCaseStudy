@@ -10,6 +10,7 @@ public class SlotColumnRenderer : MonoBehaviour
     [SerializeField] private SymbolList symbolList;
     [SerializeField] private float rowHeight;
     public float position;
+    public bool blurred;
     
     void Update()
     {
@@ -19,7 +20,7 @@ public class SlotColumnRenderer : MonoBehaviour
         foreach (var spriteRenderer in spriteRenderers)
         {
             var symbol = symbolList.symbols[mod(indexOffset + i - 1, symbolList.symbols.Count)];
-            spriteRenderer.sprite = symbol.sprite;
+            spriteRenderer.sprite = blurred ? symbol.blurredSprite : symbol.sprite;
             spriteRenderer.transform.localPosition = Vector3.up * ((-1f + i - positionOffset) * rowHeight);
             i++;
         }
