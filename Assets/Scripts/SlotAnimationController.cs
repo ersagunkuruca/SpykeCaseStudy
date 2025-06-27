@@ -6,8 +6,6 @@ using UnityEngine;
 public class SlotAnimationController : MonoBehaviour
 {
     [SerializeField] private SlotColumnRenderer columnRenderer;
-    public int targetSymbolIndex;
-    [SerializeField] private AnimationConfig animationConfig;
     [SerializeField] private SymbolList symbolList;
     [SerializeField] private float blurSpeed;
 
@@ -15,22 +13,21 @@ public class SlotAnimationController : MonoBehaviour
     public class AnimationConfig
     {
         public float duration;
-        public float startDelay;
         public float endDuration;
         public AnimationCurve startCurve;
         public AnimationCurve stopCurve;
         public float stopOffset = 1f;
         public int turnCount = 5;
-        public float startDuration => duration - endDuration - startDelay;
     }
-
-    void Start()
+    // These are just serialized for viewing purposes, ideally these values should be just shown via Odin or custom editor, not serialized
+    [SerializeField] private float startDelay;
+    [SerializeField] private AnimationConfig animationConfig;
+    [SerializeField] private int targetSymbolIndex;
+    public void StartAnimation(Symbol symbol, float startDelay, AnimationConfig config)
     {
-        StartAnimation();
-    }
-
-    public void StartAnimation()
-    {
+        animationConfig = config;
+        this.startDelay = startDelay;
+        targetSymbolIndex = symbolList.symbols.IndexOf(symbol);
         StartCoroutine(AnimateCoroutine());
     }
 
@@ -40,7 +37,7 @@ public class SlotAnimationController : MonoBehaviour
         var initialPosition = Mathf.Repeat(columnRenderer.position, symbolList.symbols.Count);
         var lastPosition = initialPosition;
 
-        var delayEndTime = animationConfig.startDelay;
+        var delayEndTime = startDelay;
         var fastSpinEndTime = animationConfig.duration - animationConfig.endDuration;
         var fastSpinEndPosition = (animationConfig.turnCount * symbolList.symbols.Count) + targetSymbolIndex -
                                   animationConfig.stopOffset;
@@ -80,8 +77,9 @@ public class SlotAnimationController : MonoBehaviour
 
             columnRenderer.position = newPosition;
             float speed = (newPosition - lastPosition) / Time.deltaTime;
-            columnRenderer.blurred = speed > blurSpeed;
-
+            columnRenderer.blurred = speed > blurSpeed && time < endAnimationEndTime;
+            columnRenderer.UpdateRenderer();
+            
             lastPosition = columnRenderer.position;
 
             if (time >= endAnimationEndTime)

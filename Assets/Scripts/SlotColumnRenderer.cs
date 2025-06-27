@@ -11,8 +11,18 @@ public class SlotColumnRenderer : MonoBehaviour
     [SerializeField] private float rowHeight;
     public float position;
     public bool blurred;
-    
+
     void Update()
+    {
+        #if UNITY_EDITOR
+        if (!Application.IsPlaying(this))
+        {
+            UpdateRenderer();
+        }
+        #endif
+    }
+
+    public void UpdateRenderer()
     {
         var indexOffset = Mathf.RoundToInt(position);
         var positionOffset = position - indexOffset;

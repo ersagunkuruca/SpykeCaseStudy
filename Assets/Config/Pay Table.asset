@@ -14,35 +14,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   combinations:
   - symbols:
-    - {fileID: 0}
-    - {fileID: 0}
-    - {fileID: 0}
+    - {fileID: 11400000, guid: 4b793727e8fad4eacaf64288be542a31, type: 2}
+    - {fileID: 11400000, guid: 750ae4c6819a24b3daa7843951215d6c, type: 2}
+    - {fileID: 11400000, guid: 9d5853fb3df7e44218c2db91033f9334, type: 2}
     frequency: 13
     reward: 0
-  - symbols: []
+  - symbols:
+    - {fileID: 11400000, guid: 750ae4c6819a24b3daa7843951215d6c, type: 2}
+    - {fileID: 11400000, guid: 750ae4c6819a24b3daa7843951215d6c, type: 2}
+    - {fileID: 11400000, guid: d643f71ab2d91455e94606ae66eeb35d, type: 2}
     frequency: 13
     reward: 0
-  - symbols: []
+  - symbols:
+    - {fileID: 11400000, guid: 76868b8668ef84178b4a036e662b116e, type: 2}
+    - {fileID: 11400000, guid: 76868b8668ef84178b4a036e662b116e, type: 2}
+    - {fileID: 11400000, guid: 4b793727e8fad4eacaf64288be542a31, type: 2}
     frequency: 13
     reward: 0
-  - symbols: []
+  - symbols:
+    - {fileID: 11400000, guid: 750ae4c6819a24b3daa7843951215d6c, type: 2}
+    - {fileID: 11400000, guid: 9d5853fb3df7e44218c2db91033f9334, type: 2}
+    - {fileID: 11400000, guid: 4b793727e8fad4eacaf64288be542a31, type: 2}
     frequency: 13
     reward: 0
-  - symbols: []
+  - symbols:
+    - {fileID: 11400000, guid: 9d5853fb3df7e44218c2db91033f9334, type: 2}
+    - {fileID: 11400000, guid: 4b793727e8fad4eacaf64288be542a31, type: 2}
+    - {fileID: 11400000, guid: 76868b8668ef84178b4a036e662b116e, type: 2}
     frequency: 13
     reward: 0
-  - symbols: []
+  - symbols:
+    - {fileID: 11400000, guid: 4b793727e8fad4eacaf64288be542a31, type: 2}
+    - {fileID: 11400000, guid: 4b793727e8fad4eacaf64288be542a31, type: 2}
+    - {fileID: 11400000, guid: 4b793727e8fad4eacaf64288be542a31, type: 2}
     frequency: 9
-    reward: 0
-  - symbols: []
+    reward: 5
+  - symbols:
+    - {fileID: 11400000, guid: 9d5853fb3df7e44218c2db91033f9334, type: 2}
+    - {fileID: 11400000, guid: 9d5853fb3df7e44218c2db91033f9334, type: 2}
+    - {fileID: 11400000, guid: 9d5853fb3df7e44218c2db91033f9334, type: 2}
     frequency: 8
-    reward: 0
-  - symbols: []
+    reward: 10
+  - symbols:
+    - {fileID: 11400000, guid: d643f71ab2d91455e94606ae66eeb35d, type: 2}
+    - {fileID: 11400000, guid: d643f71ab2d91455e94606ae66eeb35d, type: 2}
+    - {fileID: 11400000, guid: d643f71ab2d91455e94606ae66eeb35d, type: 2}
     frequency: 7
-    reward: 0
-  - symbols: []
+    reward: 20
+  - symbols:
+    - {fileID: 11400000, guid: 750ae4c6819a24b3daa7843951215d6c, type: 2}
+    - {fileID: 11400000, guid: 750ae4c6819a24b3daa7843951215d6c, type: 2}
+    - {fileID: 11400000, guid: 750ae4c6819a24b3daa7843951215d6c, type: 2}
     frequency: 6
-    reward: 0
-  - symbols: []
+    reward: 50
+  - symbols:
+    - {fileID: 11400000, guid: 76868b8668ef84178b4a036e662b116e, type: 2}
+    - {fileID: 11400000, guid: 76868b8668ef84178b4a036e662b116e, type: 2}
+    - {fileID: 11400000, guid: 76868b8668ef84178b4a036e662b116e, type: 2}
     frequency: 5
-    reward: 0
+    reward: 100
