@@ -1,15 +1,23 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using NUnit.Framework;
 using UnityEngine;
 
-public class PermutationGeneratorTest : MonoBehaviour
+public class PermutationGeneratorTest 
 {
-    // Start is called before the first frame update
-    void Start()
+
+    [Test]
+    public void TestWithGivenArray()
     {
         var frequencies = new int[] { 13, 13, 13, 13, 13, 9, 8, 7, 6, 5 };
+        TestWithArrayOfFrequencies(frequencies);
+    }
+    void TestWithArrayOfFrequencies(int[] frequencies)
+    {
         var results = PermutationGenerator.GeneratePermutationsNew(frequencies);
+        Assert.True(results.Length == 1, "We should get a single element array");
         for (int i = 0; i < results.Length; i++)
         {
             Debug.Log(string.Join(",", results[i].Select(x=>x.ToString())));
@@ -37,15 +45,9 @@ public class PermutationGeneratorTest : MonoBehaviour
                     }
                 }
 
-                Debug.Assert(count == 1,
-                    $"Symbol {i} appears {count} times in block {j}");
+                Assert.True(count == 1, $"Symbol {i} appears {count} times in block {j}");
             }
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
