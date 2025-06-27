@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
         }
         _spinIndex++;
         _spinIndex %= _sequence.combinationSequence.Count;
+        PlayerPrefs.SetInt("spinIndex", _spinIndex);
+
         _spinning = false;
     }
 
