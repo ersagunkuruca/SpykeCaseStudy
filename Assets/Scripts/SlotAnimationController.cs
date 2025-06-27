@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 
 public class SlotAnimationController : MonoBehaviour
@@ -23,15 +25,15 @@ public class SlotAnimationController : MonoBehaviour
     [SerializeField] private float startDelay;
     [SerializeField] private AnimationConfig animationConfig;
     [SerializeField] private int targetSymbolIndex;
-    public void StartAnimation(Symbol symbol, float startDelay, AnimationConfig config)
+    public async Task StartAnimation(Symbol symbol, float startDelay, AnimationConfig config)
     {
         animationConfig = config;
         this.startDelay = startDelay;
         targetSymbolIndex = symbolList.symbols.IndexOf(symbol);
-        StartCoroutine(AnimateCoroutine());
+        await AnimateCoroutine();
     }
 
-    private IEnumerator AnimateCoroutine()
+    private async Task AnimateCoroutine()
     {
         float startTime = Time.time;
         var initialPosition = Mathf.Repeat(columnRenderer.position, symbolList.symbols.Count);
@@ -86,7 +88,7 @@ public class SlotAnimationController : MonoBehaviour
             {
                 break;
             }
-            yield return null;
+            await UniTask.WaitForEndOfFrame(this);
         }
     }
 

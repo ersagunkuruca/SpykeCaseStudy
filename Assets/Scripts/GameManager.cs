@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Linq;
+using Cysharp.Threading.Tasks;
+using Cysharp.Threading.Tasks.Triggers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -9,10 +11,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PayTable payTable;
     [SerializeField] private Button spinButton;
     [SerializeField] private SlotMachineController slotMachineController;
+    [SerializeField] private ParticleSystem particleSystem;
     
     private int[] _frequencies;
     private SpinSequence _sequence;
     private int _spinIndex = 0;
+    private bool _spinning;
 
     void OnEnable()
     {
@@ -24,15 +28,25 @@ public class GameManager : MonoBehaviour
         spinButton.onClick.RemoveListener(OnSpinClicked);
     }
 
-    private void OnSpinClicked()
+    private async void OnSpinClicked()
     {
+        if (_spinning) return;
+        _spinning = true;
         var spin = _sequence.combinationSequence[_spinIndex];
         var symbols = spin.symbols;
         var reward = spin.reward;
-        Debug.Log($"Spinning {string.Join(",", symbols.Select(a => a.name))} reward: {spin.reward}");
-        slotMachineController.Spin(symbols);
+        Debug.Log($"Spinning {string.Join(",", symbols.Select(a => a.name))} reward: {reward}");
+        await slotMachineController.Spin(symbols);
+        if (reward > 0)
+        {
+            var particleSystemEmission = particleSystem.emission;
+            particleSystemEmission.rateOverTime = (float)reward;
+            particleSystem.Play();
+            await UniTask.WaitForSeconds(particleSystem.main.duration);
+        }
         _spinIndex++;
         _spinIndex %= _sequence.combinationSequence.Count;
+        _spinning = false;
     }
 
     void Start()
