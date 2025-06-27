@@ -26,8 +26,10 @@ public class GameManager : MonoBehaviour
 
     private void OnSpinClicked()
     {
-        var symbols = _sequence.combinationSequence[_spinIndex].symbols;
-        Debug.Log("Spinning " + string.Join(",", symbols.Select(a=>a.name)) );
+        var spin = _sequence.combinationSequence[_spinIndex];
+        var symbols = spin.symbols;
+        var reward = spin.reward;
+        Debug.Log($"Spinning {string.Join(",", symbols.Select(a => a.name))} reward: {spin.reward}");
         slotMachineController.Spin(symbols);
         _spinIndex++;
         _spinIndex %= _sequence.combinationSequence.Count;
