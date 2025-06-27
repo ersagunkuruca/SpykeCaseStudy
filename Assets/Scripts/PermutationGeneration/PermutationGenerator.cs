@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 public static class PermutationGenerator
@@ -79,10 +80,20 @@ public static class PermutationGenerator
                 return false;
             }
         }
-
-        var foundOne = false;
-        for (int j = 0; j < symbolFrequencies.Length; j++)
+        
+        int n = symbolFrequencies.Length;
+        int[] array = new int[n];
+        for (int i = 0; i < n; i++)
         {
+            array[i] = i;
+        }
+        Shuffle(array);
+        
+        var foundOne = false;
+        
+        for (int i = 0; i < symbolFrequencies.Length; i++)
+        {
+            var j = array[i];
             if (blocksFilled[j] == currentBlocks[j])
             {
                 currentPermutation[index] = j;
@@ -104,5 +115,16 @@ public static class PermutationGenerator
         }
 
         return foundOne;
+    }
+    
+    private static void Shuffle<T> (T[] array)
+    {
+        Random random = new Random();
+        int n = array.Length;
+        while (n > 1) 
+        {
+            int k = random.Next(n--);
+            (array[n], array[k]) = (array[k], array[n]);
+        }
     }
 }
